@@ -20,13 +20,16 @@ export default function HighlightsList() {
   return (
     <div>
         <div className="flex space-x-4 overflow-x-auto py-4">
-      {highlights.map((highlight) => (
+      {/* {highlights.map((highlight) => (
         <HighlightBubble
           key={highlight.id}
           id={highlight.id}
           cover_image_url={highlight.cover_image_url}
           title={highlight.title}
         />
+      ))} */}
+       {highlights.map((highlight) => (
+        <HighlightBubble key={highlight.id} highlight={highlight} />
       ))}
     </div>
     <Outlet/>

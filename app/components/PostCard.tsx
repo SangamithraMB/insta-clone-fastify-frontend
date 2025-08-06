@@ -2,18 +2,18 @@ import type { Post } from "~/schemas/post.schema";
 
 export function PostCard({ post }: { post: Post }) {
   return (
-    <div className='w-full max-w-lg mx-auto rounded-lg overflow-hidden border bg-white mb-6'>
-      <div className='p-4'>
-        <p className='font-bold'>webeet_user</p>
+    <div className="w-full max-w-lg mx-auto rounded-xl overflow-hidden border border-gray-200 bg-white shadow-sm mb-6">
+      <div className="px-6 py-4 bg-gray-50">
+        <p className="font-semibold text-gray-700 tracking-wide">webeet_user</p>
       </div>
       <img
         src={post.img_url}
         alt={post.caption || "Instagram post"}
-        className='w-full h-auto aspect-square object-cover'
+        className="w-full aspect-square object-cover"
       />
-      <div className='p-4'>
-        <p>
-          <span className='font-bold mr-2'>webeet_user</span>
+      <div className="px-6 py-4">
+        <p className="text-gray-900 text-sm leading-relaxed">
+          <span className="font-semibold mr-2 text-indigo-600">webeet_user</span>
           {post.caption}
         </p>
       </div>

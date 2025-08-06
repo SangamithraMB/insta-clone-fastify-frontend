@@ -8,7 +8,11 @@ type HighlightBubbleProps = {
 
 export function HighlightBubble({ id, cover_image_url, title }: HighlightBubbleProps) {
   return (
-    <Link to={`/profile/highlights/${id}`} className="flex flex-col items-center space-y-1">
+    <Link
+      to={`/profile/highlights/${id}`}
+      className="flex flex-col items-center space-y-1"
+      aria-label={`View highlight: ${title}`}
+    >
       <img
         src={cover_image_url}
         alt={title}

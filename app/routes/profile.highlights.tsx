@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router";
 import { api } from "~/services/api";
 import { highlightsSchema, type Highlight } from "~/schemas/highlights.schema";
 import { HighlightBubble } from "~/components/HighlightBubble";
+import { Outlet } from "react-router";
 
 export async function loader() {
   try {
@@ -17,7 +18,8 @@ export default function HighlightsList() {
   const highlights = useLoaderData() as Highlight[];
 
   return (
-    <div className="flex space-x-4 overflow-x-auto py-4">
+    <div>
+        <div className="flex space-x-4 overflow-x-auto py-4">
       {highlights.map((highlight) => (
         <HighlightBubble
           key={highlight.id}
@@ -27,5 +29,8 @@ export default function HighlightsList() {
         />
       ))}
     </div>
+    <Outlet/>
+    </div>
+    
   );
 }

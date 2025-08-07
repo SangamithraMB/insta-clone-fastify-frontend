@@ -1,39 +1,18 @@
-import { useLoaderData, Outlet } from "react-router";
-import { api } from "~/services/api";
-import { postsSchema, type Post } from "~/schemas/post.schema";
-import { highlightsSchema, type Highlight } from "~/schemas/highlights.schema";
+import type { Post } from "~/schemas/post.schema";
+import type { Highlight } from "~/schemas/highlights.schema";
 import { PostCard } from "~/components/PostCard";
 import { HighlightBubble } from "~/components/HighlightBubble";
 
-type LoaderData = {
+type HomeProps = {
   posts: Post[];
   highlights: Highlight[];
 };
 
-export async function loader() {
-  try {
-    // Fetch posts and highlights in parallel
-    const [postsRes, highlightsRes] = await Promise.all([
-      api.get("/posts"),
-      api.get("/highlights"),
-    ]);
-
-    return {
-      posts: postsSchema.parse(postsRes.data),
-      highlights: highlightsSchema.parse(highlightsRes.data),
-    };
-  } catch (error) {
-    console.error("Failed to load home data:", error);
-    throw new Response("Could not load home data.", { status: 500 });
-  }
-}
-
-export default function Home() {
-  const { posts, highlights } = useLoaderData() as LoaderData;
-
+export function Home({ posts, highlights }: HomeProps) {
   return (
     <main className="max-w-4xl mx-auto px-4 py-6 space-y-10">
-      {/* Highlights */}
+
+      {/* Highlights at the top */}
       <section>
         <h2 className="text-lg font-semibold mb-4">Highlights</h2>
         <div className="flex space-x-4 overflow-x-auto pb-2">
@@ -47,10 +26,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Posts */}
+      {/* Posts grid/list */}
       <section>
         <h2 className="text-lg font-semibold mb-4">Posts</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="flex flex-col space-y-8">
           {posts.length > 0 ? (
             posts.map((post) => <PostCard key={post.id} post={post} />)
           ) : (
@@ -59,7 +38,6 @@ export default function Home() {
         </div>
       </section>
 
-      <Outlet />
     </main>
   );
 }

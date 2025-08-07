@@ -42,7 +42,7 @@ export function CreatePostForm() {
     // If validation passes, proceed with form submission
     const formData = new FormData();
     if (caption) formData.append("caption", caption);
-    if (imageFile) formData.append("image", imageFile); // 'file' matches backend expected field name
+    if (imageFile) formData.append("image", imageFile); // 'image' matches backend expected field name
 
     // Programmatically submit the form data using useNavigation's form ref
     // (Alternatively, use a ref on the Form component if more complex logic is needed before submission)

@@ -2,7 +2,6 @@ import type { ActionFunctionArgs } from 'react-router';
 import { CreatePostForm } from "~/components/CreatePostForm";
 import { api } from "~/services/api";
 import { createPostInputSchema } from "~/schemas/post.schema";
-import { z } from "zod";
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();

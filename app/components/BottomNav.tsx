@@ -17,11 +17,11 @@ export function BottomNav() {
         >
           <House className="inline-block" />
         </Link>
-        <div className="inline-flex flex-col items-center justify-center px-5">
+       <div className="inline-flex flex-col items-center justify-center px-5">
           <Search className="inline-block" />
-        </div>
+        </div> 
         <Link
-          to="/home"
+          to="/create"
           className="inline-flex flex-col items-center justify-center px-5"
         >
           <SquarePlus className="inline-block" />

@@ -9,6 +9,7 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
+    "@fastify/multipart": "^9.0.3",
     "@react-router/node": "^7.7.1",
     "@react-router/serve": "^7.7.1",
     "amparo-fastify": "^0.1.60",
@@ -26,6 +27,7 @@
     "@react-router/dev": "^7.7.1",
     "@react-router/fs-routes": "^7.7.1",
     "@tailwindcss/vite": "^4.1.4",
+    "@types/busboy": "^1.5.4",
     "@types/node": "^20",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",

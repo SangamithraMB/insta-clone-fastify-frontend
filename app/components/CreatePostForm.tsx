@@ -26,9 +26,8 @@ export function CreatePostForm() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setErrors([]); // Clear previous errors
+    setErrors([]);
 
-    // Client-side validation
     const validationResult = createPostInputSchema.safeParse({
       caption,
       image: imageFile || undefined,
@@ -39,29 +38,28 @@ export function CreatePostForm() {
       return;
     }
 
-    // If validation passes, proceed with form submission
     const formData = new FormData();
     if (caption) formData.append("caption", caption);
-    if (imageFile) formData.append("image", imageFile); // 'image' matches backend expected field name
+    if (imageFile) formData.append("image", imageFile);
 
-    // Programmatically submit the form data using useNavigation's form ref
-    // (Alternatively, use a ref on the Form component if more complex logic is needed before submission)
     (event.target as HTMLFormElement).submit();
   };
 
   return (
-    <div className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4 text-center">Create New Post</h2>
+    <div className="max-w-md mx-auto p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-lg">
+      <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">
+        📸 Create a New Post
+      </h2>
       <Form
         method="post"
         encType="multipart/form-data"
         onSubmit={handleSubmit}
-        className="space-y-4"
+        className="space-y-6"
       >
         <div>
           <label
             htmlFor="image"
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
             Upload Image
           </label>
@@ -73,7 +71,7 @@ export function CreatePostForm() {
             onChange={handleImageChange}
             className="block w-full text-sm text-gray-500
               file:mr-4 file:py-2 file:px-4
-              file:rounded-full file:border-0
+              file:rounded-lg file:border-0
               file:text-sm file:font-semibold
               file:bg-blue-50 file:text-blue-700
               hover:file:bg-blue-100"
@@ -81,8 +79,8 @@ export function CreatePostForm() {
           {previewUrl && (
             <img
               src={previewUrl}
-              alt="Image Preview"
-              className="mt-4 max-h-60 w-auto rounded-md shadow-sm mx-auto"
+              alt="Preview"
+              className="mt-4 max-h-64 w-full object-contain rounded-lg border border-gray-200 dark:border-gray-700"
             />
           )}
           {errors.find((e) => e.path[0] === "image") && (
@@ -95,7 +93,7 @@ export function CreatePostForm() {
         <div>
           <label
             htmlFor="caption"
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
           >
             Caption
           </label>
@@ -105,8 +103,8 @@ export function CreatePostForm() {
             rows={3}
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-            placeholder="Write a caption..."
+            className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-sm p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Write a caption... 🌅"
           ></textarea>
           {errors.find((e) => e.path[0] === "caption") && (
             <p className="mt-2 text-sm text-red-600">
@@ -118,7 +116,7 @@ export function CreatePostForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-2 px-4 rounded-lg shadow text-white font-medium bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-60"
         >
           {isSubmitting ? "Creating..." : "Create Post"}
         </button>

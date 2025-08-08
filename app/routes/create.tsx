@@ -24,7 +24,7 @@ export async function action({ request }: ActionFunctionArgs) {
   }
 
   const payload = new FormData();
-  payload.append("caption", validationResult.data.caption);
+  payload.append("caption", validationResult.data.caption ?? "");
   payload.append("image", validationResult.data.image);
 
   try {

@@ -25,7 +25,7 @@ export function PostCard({ post }: { post: Post }) {
 
       {/* Image */}
       <img
-        src={`${backendDomain}/${post.img_url}`}
+        src={`${backendDomain}${post.img_url}`}
         alt={post.caption || "Instagram post"}
         className="w-full aspect-square object-cover"
       />

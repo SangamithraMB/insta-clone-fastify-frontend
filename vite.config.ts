@@ -4,17 +4,18 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import react from "@vitejs/plugin-react";
 
+const baseURL = import.meta.env.VITE_BACKEND_DEPLOYED || "http://localhost:3000";
+
 export default defineConfig({
   plugins: [tailwindcss(), reactRouter(), tsconfigPaths(), react()],
-  build: {
-    outDir: "build/client", 
-  },
   server: {
     proxy: {
       "/uploads": {
-        target: "http://localhost:3000",
+        target: baseURL,
         changeOrigin: true,
+        secure: baseURL.startsWith("https"),
       },
+    },
   },
-}
 });
+

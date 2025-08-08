@@ -2,6 +2,7 @@ import { Heart, MessageCircle, Send } from "lucide-react";
 import type { Post } from "~/schemas/post.schema";
 
 export function PostCard({ post }: { post: Post }) {
+  const backendDomain = "https://insta-clone-fastify-backend.onrender.com";
   return (
     <div className="w-full max-w-md mx-auto rounded-xl overflow-hidden border border-gray-200 bg-white shadow-sm mb-6 transition-transform hover:scale-[1.01]">
       
@@ -24,7 +25,7 @@ export function PostCard({ post }: { post: Post }) {
 
       {/* Image */}
       <img
-        src={post.img_url}
+        src={`${backendDomain}/${post.img_url}`}
         alt={post.caption || "Instagram post"}
         className="w-full aspect-square object-cover"
       />
